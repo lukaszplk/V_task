@@ -4,7 +4,7 @@ import pandas as pd
 import datetime
 
 
-def read_path():
+def read_path()->str:
     window = tkinter.Tk()
     window.withdraw()
     file_path = filedialog.askopenfilename()
@@ -31,7 +31,7 @@ def apply_types(df: pd.DataFrame, types: dict, start_index: int = 0, end_index: 
 def split_dataframe(df: pd.DataFrame, index: int)->pd.DataFrame:
     return df.iloc[:index], df.iloc[index:]
 
-def prepare_json(df: pd.DataFrame, date_time: dict, path: str):
+def prepare_json(df: pd.DataFrame, date_time: dict, path: str)->dict:
     result = {}
     result['path'] = path
     result.update(date_time.copy())
@@ -39,7 +39,7 @@ def prepare_json(df: pd.DataFrame, date_time: dict, path: str):
         result[key] = content.mean()
     return result
 
-def read_date_time(path: str):
+def read_date_time(path: str)->dict:
     n_lines = 4
     result = {}
     with open(path,'r') as f:
